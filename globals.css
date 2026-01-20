@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --nova-violet: #8F00FF;
+    --nova-cyan: #00F2FF;
+    --nova-black: #000000;
+    --nova-dark: #0A0A0A;
+    --nova-gray: #1A1A1A;
+    
+    /* True-Color Glow Palette */
+    --combat-crimson: #FF003C;
+    --combat-crimson-rgb: 255, 0, 60;
+    --strength-blue: #00D2FF;
+    --strength-blue-rgb: 0, 210, 255;
+    --endurance-violet: #BC00FF;
+    --endurance-violet-rgb: 188, 0, 255;
+    --recovery-emerald: #00FF85;
+    --recovery-emerald-rgb: 0, 255, 133;
+  }
+  
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    background: #000000;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  
+  /* Monospace for all data/numbers */
+  .font-mono,
+  input[type="number"],
+  .data-display {
+    font-family: 'JetBrains Mono', 'Roboto Mono', monospace !important;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer utilities {
+  .nova-gradient {
+    background: linear-gradient(135deg, var(--nova-violet) 0%, var(--nova-cyan) 100%);
+  }
+  
+  .nova-gradient-text {
+    background: linear-gradient(135deg, var(--nova-violet) 0%, var(--nova-cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .nova-glow-violet {
+    box-shadow: 0 0 30px rgba(143, 0, 255, 0.4);
+  }
+  
+  .nova-glow-cyan {
+    box-shadow: 0 0 30px rgba(0, 242, 255, 0.4);
+  }
+  
+  /* True-Color Tactical Glows */
+  .glow-combat {
+    filter: drop-shadow(0 0 8px var(--combat-crimson));
+  }
+  
+  .glow-strength {
+    filter: drop-shadow(0 0 8px var(--strength-blue));
+  }
+  
+  .glow-endurance {
+    filter: drop-shadow(0 0 8px var(--endurance-violet));
+  }
+  
+  .glow-recovery {
+    filter: drop-shadow(0 0 8px var(--recovery-emerald));
+  }
+  
+  .pulse-animation {
+    animation: pulse-ring 2s ease-out infinite;
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.8);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  @keyframes nova-pulse {
+    0% { box-shadow: 0 0 5px var(--nova-accent-glow); }
+    50% { box-shadow: 0 0 20px var(--nova-accent-glow); }
+    100% { box-shadow: 0 0 5px var(--nova-accent-glow); }
+  }
+
+  .nova-glow-active {
+    animation: nova-pulse 2s infinite ease-in-out;
+    border-color: var(--nova-accent) !important;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .glass-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-shimmer::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    animation: shimmer 3s infinite;
+    pointer-events: none;
+  }
+
+  @keyframes reaction-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  /* Glass-Tactical Card Standard */
+  .nova-glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Category-Specific Inner Glows */
+  .nova-glass-nutrition {
+    box-shadow: inset 0 0 15px rgba(16, 185, 129, 0.1);
+  }
+  
+  .nova-glass-analytics {
+    box-shadow: inset 0 0 15px rgba(139, 92, 246, 0.1);
+  }
+  
+  .nova-glass-performance {
+    box-shadow: inset 0 0 15px rgba(6, 182, 212, 0.1);
+  }
+  
+  /* Neon Data Numbers */
+  .neon-data {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    filter: drop-shadow(0 0 5px currentColor);
+  }
+}
